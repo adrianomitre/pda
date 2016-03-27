@@ -1,9 +1,13 @@
-default: example
-example: example.o pda.o
-	gcc example.o pda.o -lm -ansi -o example
-example.o: example.c
-	gcc -c example.c -lm -ansi
-pda.o: pda/pda.c
-	gcc -c pda/pda.c -lm -ansi
+CC=gcc
+CFLAGS=-c -Wall -ansi -lm
+LDFLAGS=-lm
+SOURCES=example.c pda/pda.c
+OBJECTS=$(SOURCES:.c=.o)
+EXECUTABLE=example
+all: $(SOURCES) $(EXECUTABLE)
+$(EXECUTABLE): $(OBJECTS)
+	$(CC) $(OBJECTS) -o $@ $(LDFLAGS)
+.c.o:
+	$(CC) $(CFLAGS) $< -o $@
 clean:
-	rm -f pda.o example.o example
+	rm -f pda/pda.o example.o example
