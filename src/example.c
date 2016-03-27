@@ -4,7 +4,7 @@
 #include <math.h>
 #include <assert.h>
 
-#include "pda.h"
+#include "pda/pda.h"
 
 const static unsigned short FRAME_SIZE = 1024;
 const static double TWO_PI = 6.283185307179586476925286766559;

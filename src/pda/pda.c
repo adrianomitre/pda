@@ -5,8 +5,8 @@
 #include <assert.h>
 #include <time.h>
 
-#include "mitre_pda.h"
-#include "_mitre_pda.h"
+#include "pda.h"
+#include "_pda.h"
 
 /* FFT-related variables */
 
