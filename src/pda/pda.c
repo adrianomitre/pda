@@ -1037,7 +1037,7 @@ unsigned char prepare_pda(const PDA_Parameters* args) {
     	return fatal_error_prep("invalid def_norm_factor");
     }
     if (params.bit_depth % 8 || params.bit_depth < MIN_BIT_DEPTH || params.bit_depth > MAX_BIT_DEPTH) {
-        sprintf(err_msg, "bit_depth must be a multiple of weight within %d and %d", MIN_BIT_DEPTH, MAX_BIT_DEPTH);
+        sprintf(err_msg, "bit_depth must be a multiple of eight within %d and %d", MIN_BIT_DEPTH, MAX_BIT_DEPTH);
         return fatal_error_prep(err_msg);
     }
     
