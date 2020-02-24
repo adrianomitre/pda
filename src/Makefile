@@ -1,13 +1,20 @@
 CC=gcc
-CFLAGS=-c -Wall -ansi -lm
+CCFLAGS=-c -Wall -ansi -lm
 LDFLAGS=-lm
-SOURCES=example.c pda/pda.c
-OBJECTS=$(SOURCES:.c=.o)
-EXECUTABLE=example
-all: $(SOURCES) $(EXECUTABLE)
-$(EXECUTABLE): $(OBJECTS)
-	$(CC) $(OBJECTS) -o $@ $(LDFLAGS)
-.c.o:
-	$(CC) $(CFLAGS) $< -o $@
+
+TARGET=example
+MAIN=$(addsuffix .o, $(TARGET))
+SOURCES=pda/pda.c
+OBJ=$(SOURCES:.c=.o) $(MAIN)
+DEPS=pda/pda.h pda/_pda.h
+
+all: $(TARGET)
+
+$(TARGET): $(OBJ)
+	$(CC) $(OBJ) -o $@ $(LDFLAGS)
+
+$(OBJ): %.o : %.c $(DEPS)
+	$(CC) -c -o $@ $< $(CCFLAGS)
+
 clean:
-	rm -f pda/pda.o example.o example
+	rm -f $(TARGET) $(OBJ)
